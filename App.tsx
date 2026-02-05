@@ -60,7 +60,7 @@ const App: React.FC = () => {
       {/* Background music - Using a soft romantic piano track */}
       <audio 
         ref={audioRef}
-        src="https://cdn.pixabay.com/audio/2022/11/24/audio_3401aa6719.mp3" 
+        src="/media/lovesong.mp3" 
         loop 
         autoPlay
       />
@@ -102,7 +102,7 @@ const App: React.FC = () => {
                 <span className="text-pink-600">Valentine?</span>
               </h1>
               <p className="text-gray-600 text-base md:text-xl font-medium leading-relaxed max-w-xs md:max-w-lg mx-auto">
-                I don't have a bouquet yet, but I do have a serious crush and excellent intentions.
+               You’ve been living in my heart quietly... I won’t keep it a secret anymore. Will you be my Valentine? 💖
               </p>
             </div>
 
@@ -123,7 +123,7 @@ const App: React.FC = () => {
 
             <div className="pt-4 flex flex-col gap-3">
               <p className="text-gray-400 text-xs italic leading-snug">
-                “I promise good vibes, snacks, and me trying my best to be romantic without acting like a confused robot.”
+                “I promise good vibes, your favorite snacks, and me trying my best to be romantic…because I want you smiling the whole time”
               </p>
               <p className="text-pink-400 text-[10px] animate-pulse font-black uppercase tracking-widest">
                 Tap to catch the heart
@@ -134,7 +134,7 @@ const App: React.FC = () => {
           {/* Footer */}
           <footer className="text-center">
             <p className="text-gray-400 text-[10px] md:text-xs font-medium italic opacity-80">
-              "Powered by courage, fear, and questionable JavaScript."
+              "Powered by Love | Wazimu Creator"
             </p>
           </footer>
         </div>

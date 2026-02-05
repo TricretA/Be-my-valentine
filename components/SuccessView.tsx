@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { toPng } from 'https://esm.sh/html-to-image@1.11.11';
+import { toPng } from 'html-to-image';
 
 type SuccessStep = 'video' | 'plan';
 
@@ -66,7 +66,7 @@ const SuccessView: React.FC = () => {
 
       <div className="space-y-2 md:space-y-4 relative z-30 flex-shrink-0">
         <h1 className="text-5xl md:text-7xl font-script text-pink-600 drop-shadow-xl animate-bounce">
-          YAAAAAY!! 💘
+          WOOOOW!! 💘
         </h1>
         <p className="text-pink-500 font-black text-sm md:text-xl bg-white/50 backdrop-blur-sm px-6 py-2 rounded-full inline-block shadow-sm">
           Best decision ever!
@@ -76,15 +76,11 @@ const SuccessView: React.FC = () => {
       {step === 'video' ? (
         <div className="w-full max-w-sm md:max-w-md space-y-6 animate-in slide-in-from-bottom-12 duration-700 flex flex-col items-center z-30">
           <div className="w-full bg-white/40 backdrop-blur-2xl rounded-[32px] overflow-hidden border border-white/60 shadow-2xl aspect-[16/9] md:aspect-video relative group">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
+            <img 
+              src="/media/love2.gif" 
+              alt="Romantic GIF"
               className="w-full h-full object-cover"
-            >
-              <source src="https://assets.mixkit.co/videos/preview/mixkit-young-couple-walking-hand-in-hand-in-a-park-41312-large.mp4" type="video/mp4" />
-            </video>
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-pink-500/40 to-transparent flex items-end justify-center pb-6">
                <span className="text-white font-bold text-lg drop-shadow-md">You & Me. 💖</span>
             </div>
@@ -168,7 +164,7 @@ const SuccessView: React.FC = () => {
               onClick={() => setStep('video')}
               className="text-pink-500/70 text-sm font-bold hover:underline active:opacity-60 py-2"
             >
-              ← Back to Video
+              ← Back to Love
             </button>
           </div>
         </div>

@@ -1,7 +1,7 @@
 {
   "name": "Be My Valentine",
   "short_name": "Valentine",
-  "description": "Propose to your partner for valentine",
+  "description": "Send a proposal to your partner for Valentine's Day",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fce7f3",

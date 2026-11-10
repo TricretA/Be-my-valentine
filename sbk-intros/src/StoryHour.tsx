@@ -51,13 +51,16 @@ export const StoryHour: React.FC = () => {
       {/* Iris wipe */}
       <AbsoluteFill style={{background: ORANGE, clipPath: `circle(${irisR}px at 50% 50%)`}} />
 
-      {/* Scene B: title on orange */}
+      {/* cream iris follows the orange one, leaving an orange ring as it opens */}
+      <AbsoluteFill style={{background: CREAM, clipPath: `circle(${prog(f, 98, 26, inOutCubic) * 1500}px at 50% 50%)`}} />
+
+      {/* Scene B: title on cream */}
       {f >= 92 && (
         <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center'}}>
-          <div style={{position: 'absolute', left: '6%', top: '-6%', fontFamily: 'Georgia, serif', fontSize: 1100, lineHeight: 1, color: BLACK, opacity: quote * 0.09, transform: `translateY(${(1 - quote) * 80}px)`}}>“</div>
+          <div style={{position: 'absolute', left: '6%', top: '-6%', fontFamily: 'Georgia, serif', fontSize: 1100, lineHeight: 1, color: ORANGE, opacity: quote * 0.16, transform: `translateY(${(1 - quote) * 80}px)`}}>“</div>
           <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0, marginTop: -30}}>
             <SplitText text="STORY" frame={f} start={100} size={300} color={BLACK} stagger={2.2} tracking="-0.03em" />
-            <SplitText text="HOUR" frame={f} start={114} size={300} color={CREAM} stagger={2.2} tracking="-0.03em" />
+            <SplitText text="HOUR" frame={f} start={114} size={300} color={ORANGE} stagger={2.2} tracking="-0.03em" />
             <div style={{marginTop: 40, fontFamily: FONT, fontWeight: 900, fontSize: 40, letterSpacing: "0.2em", color: BLACK, opacity: tag, transform: `translateY(${(1 - tag) * 22}px)`}}>
               REAL PEOPLE. REAL STORIES. REAL INSPIRATION.
             </div>

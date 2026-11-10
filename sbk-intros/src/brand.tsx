@@ -43,7 +43,16 @@ export const Wordmark: React.FC<{width: number; tone?: 'white' | 'black'; style?
   width,
   tone = 'white',
   style,
-}) => <Img src={staticFile(`sbk-wordmark-${tone}.png`)} style={{width, height: 'auto', display: 'block', ...style}} />;
+}) => {
+  const sfx = tone === 'black' ? '-black' : '';
+  const k = width / 640;
+  return (
+    <div style={{width, height: 276 * k, position: 'relative', ...style}}>
+      <Img src={staticFile(`word-sbk${sfx}.png`)} style={{position: 'absolute', left: 0, top: 0, width, height: 197 * k}} />
+      <Img src={staticFile(`word-media${sfx}.png`)} style={{position: 'absolute', left: 0, top: 222 * k, width, height: 54 * k}} />
+    </div>
+  );
+};
 
 /** Letters slide up out of a mask, one after another. */
 export const SplitText: React.FC<{
@@ -68,11 +77,11 @@ export const SplitText: React.FC<{
   </div>
 );
 
-export const Vignette: React.FC<{strength?: number}> = ({strength = 0.55}) => (
-  <div style={{position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,${strength}) 100%)`}} />
+export const Vignette: React.FC<{strength?: number}> = ({strength = 0.16}) => (
+  <div style={{position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(ellipse at center, rgba(120,60,20,0) 58%, rgba(120,60,20,${strength}) 100%)`}} />
 );
 
 /** Fades the whole piece to black in the last frames so editors get a clean cut. */
-export const EndFade: React.FC<{frame: number; color?: string}> = ({frame, color = '#000'}) => (
+export const EndFade: React.FC<{frame: number; color?: string}> = ({frame, color = CREAM}) => (
   <div style={{position: 'absolute', inset: 0, background: color, opacity: prog(frame, DURATION - 9, 8, (n) => n), pointerEvents: 'none'}} />
 );

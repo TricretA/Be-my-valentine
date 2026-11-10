@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame} from 'remotion';
-import {BLACK, EndFade, FONT, Mark, ORANGE, Vignette, Wordmark, backOut, outExpo, prog, useBrandFont} from './brand';
+import {BLACK, CREAM, EndFade, FONT, Mark, ORANGE, Vignette, Wordmark, backOut, outExpo, prog, useBrandFont} from './brand';
 
 const BEAT = (60 / 104) * 30; // frames per beat @104 bpm
 const WORDS = ['RELATIONSHIPS', 'MONEY', 'HUSTLE', 'CAMPUS LIFE', 'FAMILY', 'EVERYTHING'];
@@ -23,7 +23,7 @@ export const HomeboysPodcast: React.FC = () => {
   const brand = prog(f, 205, 24);
 
   return (
-    <AbsoluteFill style={{background: BLACK, overflow: 'hidden'}}>
+    <AbsoluteFill style={{background: CREAM, overflow: 'hidden'}}>
       <Audio src={staticFile('audio/homeboys.wav')} />
 
       {/* intro pop */}
@@ -37,10 +37,10 @@ export const HomeboysPodcast: React.FC = () => {
 
       {/* kinetic topics */}
       {inWords && idx >= 0 && (
-        <AbsoluteFill style={{background: idx % 2 === 0 ? ORANGE : BLACK, alignItems: 'center', justifyContent: 'center'}}>
+        <AbsoluteFill style={{background: idx % 2 === 0 ? ORANGE : CREAM, alignItems: 'center', justifyContent: 'center'}}>
           <div style={{
             fontFamily: FONT, fontWeight: 900, fontSize: WORDS[idx].length > 9 ? 190 : 330, letterSpacing: '-0.03em',
-            color: idx % 2 === 0 ? BLACK : '#fff',
+            color: BLACK,
             transform: `scale(${1.28 - 0.28 * prog(sinceBeat, 0, 6, outExpo)}) skewX(-8deg)`,
             opacity: prog(sinceBeat, 0, 2, (n) => n),
           }}>
@@ -55,19 +55,19 @@ export const HomeboysPodcast: React.FC = () => {
       {/* title */}
       {f >= TITLE_AT && (
         <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center'}}>
-          <AbsoluteFill style={{background: `radial-gradient(circle at 50% 55%, rgba(252,85,19,0.35), rgba(252,85,19,0) 60%)`}} />
+          <AbsoluteFill style={{background: `radial-gradient(circle at 50% 55%, rgba(252,85,19,0.22), rgba(252,85,19,0) 60%)`}} />
           <div style={{position: 'absolute', top: 62, opacity: brand}}>
-            <Wordmark width={230} tone="white" />
+            <Wordmark width={230} tone="black" />
           </div>
           <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', transform: `translate(${shake}px, ${-shake * 0.5}px) skewX(-8deg)`}}>
-            <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 262, lineHeight: 0.95, letterSpacing: '-0.03em', color: '#fff', transform: `scale(${2.2 - 1.2 * slam})`, opacity: Math.min(1, slam * 3)}}>
+            <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 262, lineHeight: 0.95, letterSpacing: '-0.03em', color: BLACK, transform: `scale(${2.2 - 1.2 * slam})`, opacity: Math.min(1, slam * 3)}}>
               HOMEBOYS
             </div>
             <div style={{marginTop: 14, background: ORANGE, padding: '6px 70px 14px', transform: `scaleX(${bar})`, transformOrigin: 'left'}}>
               <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 122, lineHeight: 1, letterSpacing: "0.14em", color: BLACK}}>PODCAST</div>
             </div>
           </div>
-          <div style={{position: 'absolute', top: '77%', fontFamily: FONT, fontWeight: 900, fontSize: 42, letterSpacing: '0.3em', color: '#fff', opacity: tag * 0.92, transform: `translateY(${(1 - tag) * 20}px)`}}>
+          <div style={{position: 'absolute', top: '77%', fontFamily: FONT, fontWeight: 900, fontSize: 42, letterSpacing: '0.3em', color: BLACK, opacity: tag * 0.92, transform: `translateY(${(1 - tag) * 20}px)`}}>
             NO TOPIC OFF LIMITS
           </div>
           {/* equalizer */}
@@ -82,8 +82,8 @@ export const HomeboysPodcast: React.FC = () => {
       )}
 
       {/* beat flash */}
-      {inWords && <AbsoluteFill style={{background: '#fff', opacity: 0.22 * (1 - prog(sinceBeat, 0, 4, (n) => n))}} />}
-      <Vignette strength={0.4} />
+      {inWords && <AbsoluteFill style={{background: idx % 2 === 0 ? CREAM : ORANGE, opacity: 0.28 * (1 - prog(sinceBeat, 0, 4, (n) => n))}} />}
+      <Vignette />
       <EndFade frame={f} />
     </AbsoluteFill>
   );

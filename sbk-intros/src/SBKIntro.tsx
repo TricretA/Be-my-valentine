@@ -12,10 +12,14 @@ import SPEC from '../public/data/spectrum.json';
      178-205 grille bars click into the mic
      216-282 mark glides left/scales into the lockup
      252-300 orange slab wipe reveals the SBK / MEDIA TV wordmark
-     318-400 programme ticker (Wisdom Chronicles / Story Hour / Homeboys Podcast)
+     318-400 tagline (see TAGLINE)
      400-585 hold with live idle motion, light sweeps, audio-reactive glow
      585-600 fade out
    ===================================================================================== */
+
+/* ===== EDIT HERE: the tagline shown under the logo (each item slides in one after the other) ===== */
+const TAGLINE = ['REAL CONVERSATIONS.', 'REAL IMPACT.'];
+/* ================================================================================================ */
 
 const W = 1920, H = 1080, DUR = 600;
 const BG = '#FDF8F2';      // light-mode canvas (matches the client's cream logo board)
@@ -306,16 +310,15 @@ const Wordmark: React.FC<{f: number}> = ({f}) => {
 };
 
 /* ---------- programme ticker ---------- */
-const PROGRAMMES = ['WISDOM CHRONICLES', 'STORY HOUR', 'HOMEBOYS PODCAST'];
 const Ticker: React.FC<{f: number}> = ({f}) => {
   const line = prog(f, 304, 44, inOutCubic);
   return (
     <>
       <div style={{position: 'absolute', left: LOCK_LEFT, width: LOCK_W, top: TICKER_Y - 44, height: 2, background: 'rgba(10,10,10,0.28)', transform: `scaleX(${line})`, transformOrigin: 'center'}} />
       <div style={{position: 'absolute', left: W / 2 - 8, top: TICKER_Y - 52, width: 16, height: 16, background: ORANGE, transform: `rotate(45deg) scale(${prog(f, 330, 20, backOut)})`}} />
-      <div style={{position: 'absolute', left: 0, width: W, top: TICKER_Y, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 38, fontFamily: FONT, fontWeight: 900, fontSize: 32, letterSpacing: '0.24em', color: INK}}>
-        {PROGRAMMES.map((name, i) => {
-          const st = 322 + i * 24;
+      <div style={{position: 'absolute', left: 0, width: W, top: TICKER_Y, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 44, fontFamily: FONT, fontWeight: 900, fontSize: 40, letterSpacing: '0.26em', color: INK}}>
+        {TAGLINE.map((name, i) => {
+          const st = 322 + i * 30;
           const pp = prog(f, st, 30);
           const hl = interpolate(Math.sin(f / 40 - i * 1.3), [-1, 1], [0.78, 1]);
           return (

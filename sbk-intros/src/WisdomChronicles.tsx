@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame} from 'remotion';
-import {BLACK, EndFade, FONT, Mark, ORANGE, SplitText, Vignette, Wordmark, inOutCubic, outExpo, prog, useBrandFont} from './brand';
+import {BLACK, CREAM, EndFade, FONT, Mark, ORANGE, SplitText, Vignette, Wordmark, inOutCubic, outExpo, prog, useBrandFont} from './brand';
 
 const WORDS = [
   {t: 'TRUTH', x: 8, y: 22, s: 150, sp: 0.35},
@@ -31,17 +31,17 @@ export const WisdomChronicles: React.FC = () => {
   const glow = 0.28 + 0.1 * Math.sin(f / 22);
 
   return (
-    <AbsoluteFill style={{background: BLACK, overflow: 'hidden'}}>
+    <AbsoluteFill style={{background: CREAM, overflow: 'hidden'}}>
       <Audio src={staticFile('audio/wisdom.wav')} />
 
       {/* breathing glow */}
-      <AbsoluteFill style={{background: `radial-gradient(circle at 50% 50%, rgba(252,85,19,${glow}) 0%, rgba(252,85,19,0) 55%)`, transform: `scale(${1 + f / 900})`}} />
+      <AbsoluteFill style={{background: `radial-gradient(circle at 50% 50%, rgba(252,85,19,${glow * 0.55}) 0%, rgba(252,85,19,0) 58%)`, transform: `scale(${1 + f / 900})`}} />
 
       {/* floating wisdom words */}
       {WORDS.map((w, i) => {
         const a = prog(f, 100 + i * 8, 40) * 0.1;
         return (
-          <div key={w.t} style={{position: 'absolute', left: `${w.x}%`, top: `${w.y}%`, fontFamily: FONT, fontWeight: 900, fontSize: w.s, color: 'transparent', WebkitTextStroke: '2px #fff', opacity: a, transform: `translateY(${-(f - 100) * w.sp}px)`, letterSpacing: '0.04em'}}>
+          <div key={w.t} style={{position: 'absolute', left: `${w.x}%`, top: `${w.y}%`, fontFamily: FONT, fontWeight: 900, fontSize: w.s, color: 'transparent', WebkitTextStroke: `2px ${BLACK}`, opacity: a * 0.8, transform: `translateY(${-(f - 100) * w.sp}px)`, letterSpacing: '0.04em'}}>
             {w.t}
           </div>
         );
@@ -57,7 +57,7 @@ export const WisdomChronicles: React.FC = () => {
           <div style={{transform: `scale(${0.8 + 0.2 * markIn + markOut * 0.25})`, opacity: markIn, filter: `blur(${(1 - markIn) * 18}px)`}}>
             <Mark height={420} />
           </div>
-          <div style={{position: 'absolute', top: '73%', fontFamily: FONT, fontWeight: 900, fontSize: 34, letterSpacing: '0.5em', color: '#fff', opacity: presents * 0.9, transform: `translateY(${(1 - presents) * 16}px)`}}>
+          <div style={{position: 'absolute', top: '73%', fontFamily: FONT, fontWeight: 900, fontSize: 34, letterSpacing: '0.5em', color: BLACK, opacity: presents * 0.9, transform: `translateY(${(1 - presents) * 16}px)`}}>
             SBK MEDIA TV PRESENTS
           </div>
         </AbsoluteFill>
@@ -67,15 +67,15 @@ export const WisdomChronicles: React.FC = () => {
       {f >= 96 && (
         <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', transform: `scale(${push})`}}>
           <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, marginTop: -60}}>
-            <SplitText text="WISDOM" frame={f} start={100} size={300} color="#fff" stagger={2} />
+            <SplitText text="WISDOM" frame={f} start={100} size={300} color={BLACK} stagger={2} />
             <SplitText text="CHRONICLES" frame={f} start={112} size={158} color={ORANGE} stagger={1.5} tracking="0.07em" />
             <div style={{marginTop: 34, height: 8, width: 1000, background: ORANGE, transform: `scaleX(${bar})`, transformOrigin: 'center'}} />
-            <div style={{marginTop: 34, fontFamily: FONT, fontWeight: 900, fontSize: 46, letterSpacing: '0.32em', color: '#fff', opacity: tag * 0.9, transform: `translateY(${(1 - tag) * 22}px)`}}>
+            <div style={{marginTop: 34, fontFamily: FONT, fontWeight: 900, fontSize: 46, letterSpacing: '0.32em', color: BLACK, opacity: tag * 0.9, transform: `translateY(${(1 - tag) * 22}px)`}}>
               WISDOM FOR EVERY COMRADE
             </div>
           </div>
           <div style={{position: 'absolute', bottom: 62, opacity: brand * 0.95, transform: `translateY(${(1 - brand) * 14}px)`}}>
-            <Wordmark width={240} tone="white" />
+            <Wordmark width={240} tone="black" />
           </div>
         </AbsoluteFill>
       )}

@@ -32,3 +32,16 @@ for name, col in (("white", (255, 255, 255)), ("black", (12, 12, 12))):
     o[..., 3] = (a * 255).astype(np.uint8)
     Image.fromarray(o, "RGBA").save(f"public/sbk-wordmark-{name}.png")
 print("wordmark", a.shape)
+
+# --- split wordmark ("SBK" / "MEDIA TV") in white + black variants, for dark and light themes
+lg = np.asarray(Image.open("public/logo-full.jpg").convert("RGB")).astype(float)
+R = lg[..., 0]; bgR = np.median(R[:50, :50])
+a = np.clip((bgR - R) / (bgR - 25), 0, 1); a[:, :478] = 0
+ys, xs = np.where(a > .4); X0, X1, Y0, Y1 = xs.min(), xs.max() + 1, ys.min(), ys.max() + 1
+rows = (a[:, X0:X1] > .4).sum(axis=1)
+gap = [y for y in range(Y0, Y1) if rows[y] == 0]; gs, ge = min(gap), max(gap) + 1
+a[a < .06] = 0
+for tone, col in (("white", (255, 255, 255)), ("black", (12, 12, 12))):
+    for name, sub in (("sbk", a[Y0:gs, X0:X1]), ("media", a[ge:Y1, X0:X1])):
+        o = np.zeros(sub.shape + (4,), np.uint8); o[..., :3] = col; o[..., 3] = (sub * 255).astype(np.uint8)
+        Image.fromarray(o, "RGBA").save(f"public/word-{name}{'' if tone == 'white' else '-black'}.png")

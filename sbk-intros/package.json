@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@remotion/cli": "^4.0.542",
+    "@remotion/motion-blur": "^4.0.542",
     "@remotion/transitions": "^4.0.542",
     "@types/react": "^18.3.31",
     "react": "^18.3.1",

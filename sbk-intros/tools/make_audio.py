@@ -171,4 +171,5 @@ def homeboys():
     put(b, kick(0.9), 8.1); put(b, sub_hit(0.7, 1.6), 8.1); put(b, bell(659.25, 2, 0.2), 8.1)
     finish(b, "homeboys", wet=0.16, fade=0.45)
 
-wisdom(); story(); homeboys()
+if __name__ == "__main__":
+    wisdom(); story(); homeboys()
